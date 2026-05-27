@@ -23,6 +23,7 @@
         "title": "Configuración del depósito",
         "description": "Configura la forma física y la capacidad de tu depósito de GLP para poder convertir el nivel medido en volumen y porcentaje.",
         "data": {
+          "gas_type": "Tipo de gas",
           "tank_shape": "Forma del depósito",
           "tank_capacity": "Capacidad total del depósito",
           "capacity_unit": "Unidad de capacidad",
@@ -52,6 +53,7 @@
         "title": "Ajustar configuración del depósito",
         "description": "Modifica las dimensiones físicas, la forma o los parámetros de actualización de tu depósito de GLP.",
         "data": {
+          "gas_type": "Tipo de gas",
           "tank_shape": "Forma del depósito",
           "tank_capacity": "Capacidad total del depósito",
           "capacity_unit": "Unidad de capacidad",

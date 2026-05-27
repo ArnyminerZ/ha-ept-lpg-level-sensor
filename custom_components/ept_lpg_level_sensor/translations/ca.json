@@ -23,6 +23,7 @@
         "title": "Configuració del dipòsit",
         "description": "Configura la forma física i la capacitat del teu dipòsit de GLP per poder convertir el nivell mesurat en volum i percentatge.",
         "data": {
+          "gas_type": "Tipus de gas",
           "tank_shape": "Forma del dipòsit",
           "tank_capacity": "Capacitat total del dipòsit",
           "capacity_unit": "Unitat de capacitat",
@@ -52,6 +53,7 @@
         "title": "Ajustar configuració del dipòsit",
         "description": "Modifica les dimensions físiques, la forma o els paràmetres d'actualització del teu dipòsit de GLP.",
         "data": {
+          "gas_type": "Tipus de gas",
           "tank_shape": "Forma del dipòsit",
           "tank_capacity": "Capacitat total del dipòsit",
           "capacity_unit": "Unitat de capacitat",

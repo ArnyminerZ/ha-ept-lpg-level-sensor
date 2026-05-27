@@ -21,6 +21,7 @@ from .const import (
     CONF_TANK_HEIGHT,
     CONF_TANK_SHAPE,
     CONF_UPDATE_INTERVAL,
+    CONF_GAS_TYPE,
     DEFAULT_CAPACITY_UNIT,
     DEFAULT_MAX_LEVEL,
     DEFAULT_MIN_LEVEL,
@@ -28,7 +29,11 @@ from .const import (
     DEFAULT_TANK_HEIGHT,
     DEFAULT_TANK_SHAPE,
     DEFAULT_UPDATE_INTERVAL,
+    DEFAULT_GAS_TYPE,
     DOMAIN,
+    GAS_TYPE_BUTANE,
+    GAS_TYPE_LPG,
+    GAS_TYPE_PROPANE,
     SERVICE_UUID,
     TANK_SHAPE_HORIZONTAL,
     TANK_SHAPE_LINEAR,
@@ -168,10 +173,16 @@ class EPTLpgFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                         CONF_MIN_LEVEL: user_input[CONF_MIN_LEVEL],
                         CONF_MAX_LEVEL: user_input[CONF_MAX_LEVEL],
                         CONF_UPDATE_INTERVAL: user_input[CONF_UPDATE_INTERVAL],
+                        CONF_GAS_TYPE: user_input[CONF_GAS_TYPE],
                     },
                 )
 
         data_schema = vol.Schema({
+            vol.Required(CONF_GAS_TYPE, default=DEFAULT_GAS_TYPE): vol.In({
+                GAS_TYPE_LPG: "LPG (Liquefied Petroleum Gas)",
+                GAS_TYPE_PROPANE: "Propane",
+                GAS_TYPE_BUTANE: "Butane",
+            }),
             vol.Required(CONF_TANK_SHAPE, default=DEFAULT_TANK_SHAPE): vol.In({
                 TANK_SHAPE_LINEAR: "Vertical Cylinder / Linear",
                 TANK_SHAPE_HORIZONTAL: "Horizontal Cylinder",
@@ -256,8 +267,17 @@ class EPTLpgOptionsFlowHandler(config_entries.OptionsFlow):
             CONF_UPDATE_INTERVAL,
             self.config_entry.data.get(CONF_UPDATE_INTERVAL, DEFAULT_UPDATE_INTERVAL),
         )
+        current_gas_type = self.config_entry.options.get(
+            CONF_GAS_TYPE,
+            self.config_entry.data.get(CONF_GAS_TYPE, DEFAULT_GAS_TYPE),
+        )
 
         data_schema = vol.Schema({
+            vol.Required(CONF_GAS_TYPE, default=current_gas_type): vol.In({
+                GAS_TYPE_LPG: "LPG (Liquefied Petroleum Gas)",
+                GAS_TYPE_PROPANE: "Propane",
+                GAS_TYPE_BUTANE: "Butane",
+            }),
             vol.Required(CONF_TANK_SHAPE, default=current_shape): vol.In({
                 TANK_SHAPE_LINEAR: "Vertical Cylinder / Linear",
                 TANK_SHAPE_HORIZONTAL: "Horizontal Cylinder",

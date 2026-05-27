@@ -12,7 +12,15 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
-from .const import CHARACTERISTIC_UUID, CONF_UPDATE_INTERVAL, DEFAULT_UPDATE_INTERVAL, DOMAIN
+from .const import (
+    CHARACTERISTIC_UUID,
+    CONF_GAS_TYPE,
+    CONF_UPDATE_INTERVAL,
+    DEFAULT_GAS_TYPE,
+    DEFAULT_UPDATE_INTERVAL,
+    DOMAIN,
+    GAS_SPEEDS,
+)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -75,13 +83,19 @@ class EPTLpgCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 f"Invalid data length received from sensor: {len(data)} (expected at least 10)"
             )
 
+        # Get gas type from options, fallback to config_entry data or default
+        gas_type = self.config_entry.options.get(
+            CONF_GAS_TYPE,
+            self.config_entry.data.get(CONF_GAS_TYPE, DEFAULT_GAS_TYPE),
+        )
+        speed_of_sound = GAS_SPEEDS.get(gas_type, GAS_SPEEDS[DEFAULT_GAS_TYPE])
+
         # Parse raw time of flight (microseconds) from bytes 0-3
         tof_us = int.from_bytes(data[0:4], byteorder="little")
 
         # Calculate level/distance in cm:
         # Distance = (Time of Flight * Speed of Sound) / 2
-        # For LPG, speed of sound is approximately 940 m/s = 0.094 cm/us.
-        distance_cm = (tof_us * 0.094) / 2.0
+        distance_cm = (tof_us * speed_of_sound) / 2.0
 
         # Parse battery voltage (millivolts) from bytes 8-9
         battery_mv = int.from_bytes(data[8:10], byteorder="little")

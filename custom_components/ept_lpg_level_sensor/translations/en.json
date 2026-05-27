@@ -23,6 +23,7 @@
         "title": "Tank Configuration",
         "description": "Configure the physical shape and capacity of your LPG tank so the level can be converted to volume and percentage.",
         "data": {
+          "gas_type": "Gas Type",
           "tank_shape": "Tank Shape",
           "tank_capacity": "Total Tank Capacity",
           "capacity_unit": "Unit of Capacity",
@@ -52,6 +53,7 @@
         "title": "Adjust Tank Configuration",
         "description": "Modify the physical dimensions, shape, or update parameters for your LPG tank.",
         "data": {
+          "gas_type": "Gas Type",
           "tank_shape": "Tank Shape",
           "tank_capacity": "Total Tank Capacity",
           "capacity_unit": "Unit of Capacity",
