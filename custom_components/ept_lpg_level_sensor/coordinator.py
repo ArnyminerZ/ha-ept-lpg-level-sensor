@@ -75,11 +75,19 @@ class EPTLpgCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 f"Invalid data length received from sensor: {len(data)} (expected at least 10)"
             )
 
-        # Parse raw time of flight/distance
-        raw_val = (data[9] << 8) | data[8]
-        # Calculate level/distance in cm using ESPHome's formula:
-        # ((raw_val * 0.21) / 2.0) / 10.0 = raw_val * 0.0105
-        distance_cm = ((raw_val * 0.21) / 2.0) / 10.0
+        # Parse raw time of flight (microseconds) from bytes 0-3
+        tof_us = int.from_bytes(data[0:4], byteorder="little")
+
+        # Calculate level/distance in cm:
+        # Distance = (Time of Flight * Speed of Sound) / 2
+        # For LPG, speed of sound is approximately 940 m/s = 0.094 cm/us.
+        distance_cm = (tof_us * 0.094) / 2.0
+
+        # Parse battery voltage (millivolts) from bytes 8-9
+        battery_mv = int.from_bytes(data[8:10], byteorder="little")
+
+        # Estimate battery percentage (assuming 3.0V system, mapping 2.0V-2.8V to 0-100%)
+        battery_pct = max(0, min(100, int((battery_mv - 2000) / 8)))
 
         # Get RSSI
         service_info = bluetooth.async_last_service_info(
@@ -88,14 +96,18 @@ class EPTLpgCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         rssi = service_info.rssi if service_info else None
 
         _LOGGER.info(
-            "Successfully fetched data from EPT LPG Sensor: raw=%d, distance=%.2f cm, RSSI=%s",
-            raw_val,
+            "Successfully fetched data from EPT LPG Sensor: raw_tof=%d us, distance=%.2f cm, battery=%d mV (%d%%), RSSI=%s",
+            tof_us,
             distance_cm,
+            battery_mv,
+            battery_pct,
             rssi,
         )
 
         return {
-            "raw": raw_val,
+            "raw": tof_us,
             "distance": distance_cm,
+            "battery_voltage": battery_mv,
+            "battery_level": battery_pct,
             "rssi": rssi,
         }

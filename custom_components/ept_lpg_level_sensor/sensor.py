@@ -16,6 +16,7 @@ from homeassistant.const import (
     PERCENTAGE,
     SIGNAL_STRENGTH_DECIBELS_MILLIWATT,
     EntityCategory,
+    UnitOfElectricPotential,
     UnitOfLength,
     UnitOfVolume,
 )
@@ -59,6 +60,8 @@ async def async_setup_entry(
         EPTLpgPercentageSensor(coordinator),
         EPTLpgRssiSensor(coordinator),
         EPTLpgRawSensor(coordinator),
+        EPTLpgBatterySensor(coordinator),
+        EPTLpgBatteryVoltageSensor(coordinator),
     ]
 
     async_add_entities(entities)
@@ -304,3 +307,53 @@ class EPTLpgRawSensor(EPTLpgSensorBase):
             return None
         val = self.coordinator.data.get("raw")
         return int(val) if val is not None else None
+
+
+class EPTLpgBatterySensor(EPTLpgSensorBase):
+    """Sensor for the battery level percentage."""
+
+    _attr_device_class = SensorDeviceClass.BATTERY
+    _attr_state_class = SensorStateClass.MEASUREMENT
+    _attr_native_unit_of_measurement = PERCENTAGE
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
+
+    def __init__(self, coordinator: EPTLpgCoordinator) -> None:
+        """Initialize."""
+        super().__init__(coordinator, "battery")
+        self._attr_name = "Battery"
+
+    @property
+    def native_value(self) -> int | None:
+        """Return the state of the sensor."""
+        if (
+            self.coordinator.data is None
+            or "battery_level" not in self.coordinator.data
+        ):
+            return None
+        return self.coordinator.data.get("battery_level")
+
+
+class EPTLpgBatteryVoltageSensor(EPTLpgSensorBase):
+    """Sensor for the battery voltage."""
+
+    _attr_device_class = SensorDeviceClass.VOLTAGE
+    _attr_state_class = SensorStateClass.MEASUREMENT
+    _attr_native_unit_of_measurement = UnitOfElectricPotential.VOLT
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
+
+    def __init__(self, coordinator: EPTLpgCoordinator) -> None:
+        """Initialize."""
+        super().__init__(coordinator, "battery_voltage")
+        self._attr_name = "Battery Voltage"
+
+    @property
+    def native_value(self) -> float | None:
+        """Return the state of the sensor."""
+        if (
+            self.coordinator.data is None
+            or "battery_voltage" not in self.coordinator.data
+        ):
+            return None
+        # Convert mV to V
+        val = self.coordinator.data.get("battery_voltage")
+        return round(val / 1000.0, 2) if val is not None else None
