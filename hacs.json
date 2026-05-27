@@ -1,0 +1,8 @@
+{
+  "name": "EPT Tech LPG Level Sensor",
+  "render_readme": true,
+  "domains": [
+    "sensor"
+  ],
+  "homeassistant": "2024.1.0"
+}

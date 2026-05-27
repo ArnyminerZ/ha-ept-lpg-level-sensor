@@ -1,0 +1,75 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Select EPT Tech LPG Level Sensor",
+        "description": "Select the EPT Tech LPG Level Sensor you want to set up, or choose to enter the MAC address manually.",
+        "data": {
+          "address": "Bluetooth Device"
+        }
+      },
+      "manual": {
+        "title": "Manual Setup",
+        "description": "Enter the Bluetooth MAC address of your EPT Tech LPG Level Sensor (e.g. E8:FA:8C:8A:2F:10).",
+        "data": {
+          "address": "MAC Address"
+        }
+      },
+      "bluetooth_confirm": {
+        "title": "Discovered EPT Tech LPG Level Sensor",
+        "description": "Do you want to set up the EPT Tech LPG Level Sensor found at {name}?"
+      },
+      "tank": {
+        "title": "Tank Configuration",
+        "description": "Configure the physical shape and capacity of your LPG tank so the level can be converted to volume and percentage.",
+        "data": {
+          "tank_shape": "Tank Shape",
+          "tank_capacity": "Total Tank Capacity",
+          "capacity_unit": "Unit of Capacity",
+          "tank_height": "Tank Height / Diameter (cm)",
+          "min_level": "Minimum Level (0% Capacity) (cm)",
+          "max_level": "Maximum Level (100% Capacity) (cm)",
+          "update_interval": "Update Interval (minutes)"
+        }
+      }
+    },
+    "error": {
+      "invalid_mac": "Invalid MAC address format (expected XX:XX:XX:XX:XX:XX).",
+      "invalid_capacity": "Capacity must be greater than 0.",
+      "invalid_height": "Height / Diameter must be greater than 0.",
+      "invalid_min_level": "Minimum level must be 0 or greater.",
+      "invalid_max_level": "Maximum level must be greater than minimum level.",
+      "max_level_too_high": "Maximum level cannot exceed total tank height / diameter.",
+      "invalid_update_interval": "Update interval must be at least 1 minute."
+    },
+    "abort": {
+      "already_configured": "Device is already configured"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Adjust Tank Configuration",
+        "description": "Modify the physical dimensions, shape, or update parameters for your LPG tank.",
+        "data": {
+          "tank_shape": "Tank Shape",
+          "tank_capacity": "Total Tank Capacity",
+          "capacity_unit": "Unit of Capacity",
+          "tank_height": "Tank Height / Diameter (cm)",
+          "min_level": "Minimum Level (0% Capacity) (cm)",
+          "max_level": "Maximum Level (100% Capacity) (cm)",
+          "update_interval": "Update Interval (minutes)"
+        }
+      }
+    },
+    "error": {
+      "invalid_mac": "Invalid MAC address format (expected XX:XX:XX:XX:XX:XX).",
+      "invalid_capacity": "Capacity must be greater than 0.",
+      "invalid_height": "Height / Diameter must be greater than 0.",
+      "invalid_min_level": "Minimum level must be 0 or greater.",
+      "invalid_max_level": "Maximum level must be greater than minimum level.",
+      "max_level_too_high": "Maximum level cannot exceed total tank height / diameter.",
+      "invalid_update_interval": "Update interval must be at least 1 minute."
+    }
+  }
+}

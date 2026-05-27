@@ -1,0 +1,75 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Seleccionar sensor de nivel de GLP EPT Tech",
+        "description": "Selecciona el sensor de nivel de GLP EPT Tech que deseas configurar, o elige introducir la dirección MAC manualmente.",
+        "data": {
+          "address": "Dispositivo Bluetooth"
+        }
+      },
+      "manual": {
+        "title": "Configuración manual",
+        "description": "Introduce la dirección MAC Bluetooth de tu sensor de nivel de GLP EPT Tech (ej. E8:FA:8C:8A:2F:10).",
+        "data": {
+          "address": "Dirección MAC"
+        }
+      },
+      "bluetooth_confirm": {
+        "title": "Sensor de nivel de GLP EPT Tech detectado",
+        "description": "¿Quieres configurar el sensor de nivel de GLP EPT Tech detectado en {name}?"
+      },
+      "tank": {
+        "title": "Configuración del depósito",
+        "description": "Configura la forma física y la capacidad de tu depósito de GLP para poder convertir el nivel medido en volumen y porcentaje.",
+        "data": {
+          "tank_shape": "Forma del depósito",
+          "tank_capacity": "Capacidad total del depósito",
+          "capacity_unit": "Unidad de capacidad",
+          "tank_height": "Altura / Diámetro del depósito (cm)",
+          "min_level": "Nivel mínimo (0% de capacidad) (cm)",
+          "max_level": "Nivel máximo (100% de capacidad) (cm)",
+          "update_interval": "Intervalo de actualización (minutos)"
+        }
+      }
+    },
+    "error": {
+      "invalid_mac": "Formato de dirección MAC no válido (se esperaba XX:XX:XX:XX:XX:XX).",
+      "invalid_capacity": "La capacidad debe ser mayor que 0.",
+      "invalid_height": "La altura o diámetro debe ser mayor que 0.",
+      "invalid_min_level": "El nivel mínimo debe ser 0 o superior.",
+      "invalid_max_level": "El nivel máximo debe ser superior al nivel mínimo.",
+      "max_level_too_high": "El nivel máximo no puede superar la altura o diámetro total del depósito.",
+      "invalid_update_interval": "El intervalo de actualización debe ser de al menos 1 minuto."
+    },
+    "abort": {
+      "already_configured": "El dispositivo ya está configurado"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Ajustar configuración del depósito",
+        "description": "Modifica las dimensiones físicas, la forma o los parámetros de actualización de tu depósito de GLP.",
+        "data": {
+          "tank_shape": "Forma del depósito",
+          "tank_capacity": "Capacidad total del depósito",
+          "capacity_unit": "Unidad de capacidad",
+          "tank_height": "Altura / Diámetro del depósito (cm)",
+          "min_level": "Nivel mínimo (0% de capacidad) (cm)",
+          "max_level": "Nivel máximo (100% de capacidad) (cm)",
+          "update_interval": "Intervalo de actualización (minutos)"
+        }
+      }
+    },
+    "error": {
+      "invalid_mac": "Formato de dirección MAC no válido (se esperaba XX:XX:XX:XX:XX:XX).",
+      "invalid_capacity": "La capacidad debe ser mayor que 0.",
+      "invalid_height": "La altura o diámetro debe ser mayor que 0.",
+      "invalid_min_level": "El nivel mínimo debe ser 0 o superior.",
+      "invalid_max_level": "El nivel máximo debe ser superior al nivel mínimo.",
+      "max_level_too_high": "El nivel máximo no puede superar la altura o diámetro total del depósito.",
+      "invalid_update_interval": "El intervalo de actualización debe ser de al menos 1 minuto."
+    }
+  }
+}

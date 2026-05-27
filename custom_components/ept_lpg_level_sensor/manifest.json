@@ -1,0 +1,20 @@
+{
+  "domain": "ept_lpg_level_sensor",
+  "name": "EPT Tech LPG Level Sensor",
+  "version": "1.0.0",
+  "documentation": "https://github.com/arnyminerz/ha-ept-lpg-level-sensor",
+  "requirements": [
+    "bleak-retry-connector>=3.5.0"
+  ],
+  "dependencies": [
+    "bluetooth_adapters"
+  ],
+  "codeowners": [],
+  "config_flow": true,
+  "iot_class": "local_polling",
+  "bluetooth": [
+    {
+      "service_uuid": "00001123-1212-efde-1523-785feabcd123"
+    }
+  ]
+}

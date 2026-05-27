@@ -1,0 +1,75 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Seleccionar sensor de nivell de GLP EPT Tech",
+        "description": "Selecciona el sensor de nivell de GLP EPT Tech que vols configurar, o tria introduir l'adreça MAC manualment.",
+        "data": {
+          "address": "Dispositiu Bluetooth"
+        }
+      },
+      "manual": {
+        "title": "Configuració manual",
+        "description": "Introdueix l'adreça MAC Bluetooth del teu sensor de nivell de GLP EPT Tech (ex. E8:FA:8C:8A:2F:10).",
+        "data": {
+          "address": "Adreça MAC"
+        }
+      },
+      "bluetooth_confirm": {
+        "title": "Sensor de nivell de GLP EPT Tech detectat",
+        "description": "Vols configurar el sensor de nivell de GLP EPT Tech detectat a {name}?"
+      },
+      "tank": {
+        "title": "Configuració del dipòsit",
+        "description": "Configura la forma física i la capacitat del teu dipòsit de GLP per poder convertir el nivell mesurat en volum i percentatge.",
+        "data": {
+          "tank_shape": "Forma del dipòsit",
+          "tank_capacity": "Capacitat total del dipòsit",
+          "capacity_unit": "Unitat de capacitat",
+          "tank_height": "Altura / Diàmetre del dipòsit (cm)",
+          "min_level": "Nivell mínim (0% de capacitat) (cm)",
+          "max_level": "Nivell màxim (100% de capacitat) (cm)",
+          "update_interval": "Interval d'actualització (minuts)"
+        }
+      }
+    },
+    "error": {
+      "invalid_mac": "Format d'adreça MAC no vàlid (s'esperava XX:XX:XX:XX:XX:XX).",
+      "invalid_capacity": "La capacitat ha de ser superior a 0.",
+      "invalid_height": "L'alçada o diàmetre ha de ser superior a 0.",
+      "invalid_min_level": "El nivell mínim ha de ser 0 o superior.",
+      "invalid_max_level": "El nivell màxim ha de ser superior al nivell mínim.",
+      "max_level_too_high": "El nivell màxim no pot superar l'alçada o diàmetre total del dipòsit.",
+      "invalid_update_interval": "L'interval d'actualització ha de ser de com a mínim 1 minut."
+    },
+    "abort": {
+      "already_configured": "El dispositiu ja està configurat"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Ajustar configuració del dipòsit",
+        "description": "Modifica les dimensions físiques, la forma o els paràmetres d'actualització del teu dipòsit de GLP.",
+        "data": {
+          "tank_shape": "Forma del dipòsit",
+          "tank_capacity": "Capacitat total del dipòsit",
+          "capacity_unit": "Unitat de capacitat",
+          "tank_height": "Altura / Diàmetre del dipòsit (cm)",
+          "min_level": "Nivell mínim (0% de capacitat) (cm)",
+          "max_level": "Nivell màxim (100% de capacitat) (cm)",
+          "update_interval": "Interval d'actualització (minuts)"
+        }
+      }
+    },
+    "error": {
+      "invalid_mac": "Format d'adreça MAC no vàlid (s'esperava XX:XX:XX:XX:XX:XX).",
+      "invalid_capacity": "La capacitat ha de ser superior a 0.",
+      "invalid_height": "L'alçada o diàmetre ha de ser superior a 0.",
+      "invalid_min_level": "El nivell mínim ha de ser 0 o superior.",
+      "invalid_max_level": "El nivell màxim ha de ser superior al nivell mínim.",
+      "max_level_too_high": "El nivell màxim no pot superar l'alçada o diàmetre total del dipòsit.",
+      "invalid_update_interval": "L'interval d'actualització ha de ser de com a mínim 1 minut."
+    }
+  }
+}
